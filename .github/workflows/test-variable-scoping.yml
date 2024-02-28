@@ -25,8 +25,6 @@ jobs:
       LOCAL_FIXED_VALUE: $GLOBAL_FIXED_VALUE
       LOCAL_INPUT_VALUE_REF: ${{ github.env.GLOBAL_INPUT_VALUE }}
       LOCAL_NON_EXISTING_REF: ${{ github.env.GLOBAL_DOES_NOT_EXIST }}
-      GITHUB_ENV_JSON: ${{ toJSON(github.env) }}
-      GITHUB_JSON: ${{ toJSON(github) }}
     steps:
       - name: Print Variables
         run: |
@@ -38,5 +36,5 @@ jobs:
           echo "env.LOCAL_FIXED_VALUE: ${{ env.LOCAL_FIXED_VALUE }}"
           echo "env.LOCAL_INPUT_VALUE_REF: ${{ env.LOCAL_INPUT_VALUE_REF }}"
           echo "env.LOCAL_NON_EXISTING_REF: ${{ env.LOCAL_NON_EXISTING_REF }}"
-          echo "env.GITHUB_ENV_JSON: ${{ env.GITHUB_ENV_JSON }}"
-          echo "env.GITHUB_JSON: ${{ env.GITHUB_JSON }}"
+          echo "inputs: ${{ toJSON(inputs) }}"
+          echo "env: ${{ toJSON(env) }}"
