@@ -14,22 +14,22 @@ on:
           - bar
 
 env:
-  INPUT_VALUE: ${{ github.inputs.choice_input || 'bar' }}
-  FIXED_VALUE: bar
+  GLOBAL_INPUT_VALUE: ${{ github.inputs.choice_input || 'bar' }}
+  GLOBAL_FIXED_VALUE: bar
 
 jobs:
   debug:
     runs-on: ubuntu-latest
     env:
-      INPUT_VALUE: $INPUT_VALUE
-      FIXED_VALUE: $FIXED_VALUE
-      INPUT_VALUE_REF: ${{ github.env.INPUT_VALUE }}
+      LOCAL_INPUT_VALUE: $GLOBAL_INPUT_VALUE
+      LOCAL_FIXED_VALUE: $GLOBAL_FIXED_VALUE
+      LOCAL_INPUT_VALUE_REF: ${{ github.env.INPUT_VALUE }}
     steps:
       - name: Print Variables
         run: |
-          echo "github.env.INPUT_VALUE: ${{ github.env.INPUT_VALUE }}"
-          echo "github.env.FIXED_VALUE: ${{ github.env.FIXED_VALUE }}"
+          echo "github.env.GLOBAL_INPUT_VALUE: ${{ github.env.GLOBAL_INPUT_VALUE }}"
+          echo "github.env.GLOBAL_FIXED_VALUE: ${{ github.env.GLOBAL_FIXED_VALUE }}"
           echo "inputs.choice_input: ${{ inputs.choice_input }}"
-          echo "env.INPUT_VALUE: ${{ env.INPUT_VALUE }}"
-          echo "env.FIXED_VALUE: ${{ env.FIXED_VALUE }}"
+          echo "env.LOCAL_INPUT_VALUE: ${{ env.LOCAL_INPUT_VALUE }}"
+          echo "env.LOCAL_FIXED_VALUE: ${{ env.LOCAL_FIXED_VALUE }}"
           echo "github.event.inputs.choice_input: ${{ github.event.inputs.choice_input }}"
