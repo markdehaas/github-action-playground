@@ -14,7 +14,7 @@ on:
           - bar
 
 env:
-  GLOBAL_INPUT_VALUE: ${{ github.inputs.choice_input || 'bar' }}
+  GLOBAL_INPUT_VALUE: ${{ github.event.inputs.choice_input || 'bar' }}
   GLOBAL_FIXED_VALUE: bar
 
 jobs:
