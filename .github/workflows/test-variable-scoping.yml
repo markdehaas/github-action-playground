@@ -44,3 +44,8 @@ jobs:
           echo "env.LOCAL_NON_EXISTING_REF: ${{ env.LOCAL_NON_EXISTING_REF }}"
           echo "inputs: ${{ toJSON(inputs) }}"
           echo "env: ${{ toJSON(env) }}"
+
+  call-nested-debug:
+    uses: ./.github/workflows/reusable-test-variable-scoping.yml
+    with:
+      input_value: $GLOBAL_INPUT_VALUE
