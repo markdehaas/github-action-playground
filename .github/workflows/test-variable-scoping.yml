@@ -23,7 +23,7 @@ jobs:
     env:
       INPUT_VALUE: $INPUT_VALUE
       FIXED_VALUE: $FIXED_VALUE
-      INPUT_VALUE_REF: ${{ env.INPUT_VALUE }}
+      INPUT_VALUE_REF: ${{ github.env.INPUT_VALUE }}
     steps:
       - name: Print Variables
         run: |
