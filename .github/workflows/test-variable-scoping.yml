@@ -48,5 +48,5 @@ jobs:
   call-nested-debug:
     uses: ./.github/workflows/reusable-test-variable-scoping.yml
     with:
-      input_value: $GLOBAL_INPUT_VALUE
+      input_value: ${{ github.event.inputs.choice_input || 'bar' }} #$GLOBAL_INPUT_VALUE
       other_input_value: ${{ github.env.GLOBAL_FIXED_VALUE }}
