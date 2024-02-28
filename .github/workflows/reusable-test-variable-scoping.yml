@@ -7,6 +7,10 @@ on:
         type: string
         required: false
         default: bar
+      other_input_value:
+        type: string
+        required: false
+        default: bar
 
 jobs:
   nested-debug:
@@ -14,10 +18,14 @@ jobs:
     env:
       LOCAL_GITHUB_EVENT_INPUT_VALUE: ${{ github.event.inputs.input_value }}
       LOCAL_INPUT_VALUE: ${{ inputs.input_value }}
+      LOCAL_GITHUB_EVENT_OTHER_INPUT_VALUE: ${{ github.event.inputs.other_input_value }}
+      LOCAL_OTHER_INPUT_VALUE: ${{ inputs.other_input_value }}
     steps:
       - name: Print Variables
         run: |
           echo "env.LOCAL_GITHUB_EVENT_INPUT_VALUE: ${{ env.LOCAL_GITHUB_EVENT_INPUT_VALUE }}"
           echo "env.LOCAL_INPUT_VALUE: ${{ env.LOCAL_INPUT_VALUE }}"
+          echo "env.LOCAL_GITHUB_EVENT_OTHER_INPUT_VALUE: ${{ env.LOCAL_GITHUB_EVENT_OTHER_INPUT_VALUE }}"
+          echo "env.LOCAL_OTHER_INPUT_VALUE: ${{ env.LOCAL_OTHER_INPUT_VALUE }}"
           echo "inputs: ${{ toJSON(inputs) }}"
           echo "env: ${{ toJSON(env) }}"
