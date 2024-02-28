@@ -1,0 +1,35 @@
+name: "Test Variable Scoping"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      choice_input:
+        type: choice
+        options:
+          - foo
+          - bar
+
+env:
+  INPUT_VALUE: ${{ github.inputs.choice_input || 'bar' }}
+  FIXED_VALUE: bar
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    env:
+      INPUT_VALUE: $INPUT_VALUE
+      FIXED_VALUE: $FIXED_VALUE
+      INPUT_VALUE_REF: ${{ env.INPUT_VALUE }}
+    steps:
+      - name: Print Variables
+        run: |
+          echo "github.env.INPUT_VALUE: ${{ github.env.INPUT_VALUE }}"
+          echo "github.env.FIXED_VALUE: ${{ github.env.FIXED_VALUE }}"
+          echo "inputs.choice_input: ${{ inputs.choice_input }}"
+          echo "env.INPUT_VALUE: ${{ env.INPUT_VALUE }}"
+          echo "env.FIXED_VALUE: ${{ env.FIXED_VALUE }}"
+          echo "github.event.inputs.choice_input: ${{ github.event.inputs.choice_input }}"
