@@ -49,4 +49,4 @@ jobs:
     uses: ./.github/workflows/reusable-test-variable-scoping.yml
     with:
       input_value: $GLOBAL_INPUT_VALUE
-      other_input_value: ${{ env.GLOBAL_FIXED_VALUE }}
+      other_input_value: ${{ github.env.GLOBAL_FIXED_VALUE }}
